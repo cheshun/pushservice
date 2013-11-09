@@ -27,8 +27,10 @@
         </div>
         <nav class="navbar-collapse collapse">
             <ul class="nav navbar-nav" >
-                <li class="active"><a href="./index">首页</a></li>
-                <li><a href="./about">关于</a></li>
+                <li class="active"><a href="./index">Index</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" >
+                <li><a href="./about">About</a></li>
             </ul>
         </nav>
     </div>
