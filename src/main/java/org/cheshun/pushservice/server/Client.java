@@ -18,7 +18,7 @@ public class Client {
     /*接受数据缓冲区*/ 
     private static ByteBuffer sendbuffer = ByteBuffer.allocate(20);  
     /*发送数据缓冲区*/ 
-    private static ByteBuffer receivebuffer = ByteBuffer.allocate(BLOCK);  
+    private static ByteBuffer receivebuffer = ByteBuffer.allocate(20);  
     /*服务器端地址*/ 
     private final static InetSocketAddress SERVER_ADDRESS = new InetSocketAddress(  
             "localhost", 8888);  
@@ -59,13 +59,14 @@ public class Client {
                 if (selectionKey.isConnectable()) {  
                     System.out.println("client connect");  
                     client = (SocketChannel) selectionKey.channel();  
+                    
                     // 判断此通道上是否正在进行连接操作。  
                     // 完成套接字通道的连接过程。  
                     if (client.isConnectionPending()) {  
                         client.finishConnect();  
                         System.out.println("完成连接!");  
                         sendbuffer.clear();  
-                        sendbuffer.put("Hello,Server".getBytes());  
+                        sendbuffer.put("Hello,Server\n".getBytes());  
                         sendbuffer.flip();  
                         client.write(sendbuffer);  
                     }  
@@ -76,6 +77,7 @@ public class Client {
                     receivebuffer.clear();  
                     //读取服务器发送来的数据到缓冲区中  
                     count=client.read(receivebuffer);  
+                    System.out.println(count);
                     if(count>0){  
                         receiveText = new String( receivebuffer.array(),0,count);  
                         System.out.println("客户端接受服务器端数据--:"+receiveText);  
