@@ -1,8 +1,10 @@
 package org.cheshun.pushservice.server;
 
 import org.jboss.netty.buffer.ChannelBuffer;
+import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandlerContext;
+import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
@@ -19,6 +21,19 @@ public class DiscardServerHandler extends SimpleChannelHandler {
 		ch.setAttachment("hehe");
 		ch.write(e.getMessage());
 	}
+
+	
+	
+	@Override
+	public void channelConnected(ChannelHandlerContext ctx, ChannelStateEvent e)
+			throws Exception {
+		System.out.println("Channel connected " + e);  
+        Channel ch = e.getChannel();  
+        ChannelBuffer cb = ChannelBuffers.wrappedBuffer("success".getBytes()) ;  
+        ch.write(cb); 
+	}
+
+
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
