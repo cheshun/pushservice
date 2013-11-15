@@ -9,8 +9,13 @@ import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
+import org.jboss.netty.handler.codec.frame.DelimiterBasedFrameDecoder;
+import org.jboss.netty.handler.codec.frame.Delimiters;
+import org.jboss.netty.handler.codec.string.StringDecoder;
+import org.jboss.netty.handler.codec.string.StringEncoder;
+import org.jboss.netty.util.CharsetUtil;
 
-public class DiscardServer {
+public class PushServer {
 	public static void main(String[] args) {
 		ChannelFactory factory = new NioServerSocketChannelFactory(
 				Executors.newCachedThreadPool(),
@@ -18,7 +23,12 @@ public class DiscardServer {
 		ServerBootstrap bootstrap = new ServerBootstrap(factory);
 		bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
             public ChannelPipeline getPipeline() {
-            	return Channels.pipeline(new DiscardServerHandler());
+            	ChannelPipeline pipeline = Channels.pipeline();
+//            	pipeline.addLast("frameDecoder", new DelimiterBasedFrameDecoder(80, Delimiters.lineDelimiter()));
+            	pipeline.addLast("stringDecoder", new StringDecoder(CharsetUtil.UTF_8));
+            	pipeline.addLast("stringEncoder", new StringEncoder(CharsetUtil.UTF_8));
+            	pipeline.addLast("handler", new PushServerHandler());
+            	return pipeline;
             }
 		});
 
