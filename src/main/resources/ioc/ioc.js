@@ -29,9 +29,16 @@ var ioc = {
 	},
 	// Dao
 	dao : {
-		type : 'org.nutz.dao.impl.NutDao',
+		type : "org.nutz.dao.impl.NutDao",
 		args : [ {
 			refer : "dataSource"
 		} ]
-	}
+	},
+    // Action
+    universityAction : {
+        type : "org.cheshun.pushservice.action.UniversityAction",
+        fields : {
+            refer : "dao"
+        }
+    }
 };

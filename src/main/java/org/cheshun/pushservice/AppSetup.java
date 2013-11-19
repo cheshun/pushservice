@@ -34,30 +34,30 @@ public class AppSetup implements Setup {
 			user.setUsername("Admin");
 			dao.insert(user); 
 		}
-		University university = new University();
-		university.setUniversityName("大连民族学院");
-		university = dao.insert(university);
-		College college = new College();
-		college.setCollegeName("计算机科学与工程学院");
-		college.setUniversityId(university.getUniversityId());
-		college.setUniversity(university);
-		college = dao.insert(college);
-		Major major = new Major();
-		major.setMajorName("计算机科学与技术");
-		major.setCollegeId(college.getCollegeId());
-		major.setCollege(college);
-		major = dao.insert(major);
-		Clazz clazz = new Clazz();
-		clazz.setClazzName("计科105班");
-		clazz.setMajorId(major.getMajorId());
-		clazz.setMajor(major);
-		clazz = dao.insert(clazz);
-		Student student = new Student();
-		student.setStudentId("2010081501");
-		student.setStudentName("车顺");
-		student.setClazzId(clazz.getClazzId());
-		student.setClazz(clazz);
-		dao.insert(student);
+//		University university = new University();
+//		university.setUniversityName("大连民族学院");
+//		university = dao.insert(university);
+//		College college = new College();
+//		college.setCollegeName("计算机科学与工程学院");
+//		college.setUniversityId(university.getUniversityId());
+//		college.setUniversity(university);
+//		college = dao.insert(college);
+//		Major major = new Major();
+//		major.setMajorName("计算机科学与技术");
+//		major.setCollegeId(college.getCollegeId());
+//		major.setCollege(college);
+//		major = dao.insert(major);
+//		Clazz clazz = new Clazz();
+//		clazz.setClazzName("计科105班");
+//		clazz.setMajorId(major.getMajorId());
+//		clazz.setMajor(major);
+//		clazz = dao.insert(clazz);
+//		Student student = new Student();
+//		student.setStudentId("2010081501");
+//		student.setStudentName("车顺");
+//		student.setClazzId(clazz.getClazzId());
+//		student.setClazz(clazz);
+//		dao.insert(student);
 	}
 
 	@Override
