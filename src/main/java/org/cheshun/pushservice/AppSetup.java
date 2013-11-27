@@ -6,6 +6,7 @@ import org.cheshun.pushservice.model.Major;
 import org.cheshun.pushservice.model.Student;
 import org.cheshun.pushservice.model.University;
 import org.cheshun.pushservice.model.User;
+import org.cheshun.pushservice.util.MD5Util;
 import org.nutz.dao.Dao;
 import org.nutz.dao.impl.NutDao;
 import org.nutz.log.Log;
@@ -30,7 +31,7 @@ public class AppSetup implements Setup {
 		if (user == null) {
 			user = new User();
 			user.setEmail("cheshun520@gmail.com");
-			user.setPassword("123456");
+			user.setPassword(MD5Util.generalMD5E2("123456"));
 			user.setUsername("Admin");
 			dao.insert(user); 
 		}

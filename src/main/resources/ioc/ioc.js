@@ -34,11 +34,26 @@ var ioc = {
 			refer : "dataSource"
 		} ]
 	},
+    //service
+    userService: {
+        type: "org.cheshun.pushservice.service.UserService",
+        fields: {
+            dao: { refer: "dao" }
+        }
+    },
+    //Filter
+    authFilter : {
+        type : "org.cheshun.pushservice.filter.AuthFilter",
+        args : [
+            { refer: "config"},
+            { refer: "dao"}
+        ]
+    },
     // Action
     universityAction : {
         type : "org.cheshun.pushservice.action.UniversityAction",
         fields : {
-            refer : "dao"
+            dao: { refer : "dao" }
         }
     }
 };
